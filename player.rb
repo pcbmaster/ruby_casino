@@ -17,8 +17,9 @@ class Player
 
   def bankroll_amt
     puts "Your intial balance is: #{bankroll}"
+    start = NavClass.new
   end
-
+  
 end
 
 p = Player.new
