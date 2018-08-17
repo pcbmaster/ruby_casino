@@ -1,4 +1,8 @@
 class High_low_game
+
+  def initialize(obj)
+
+  end
 # generate random card
 
 # user selects amount to bet
