@@ -6,7 +6,17 @@ require_relative 'high_low_game'
 #start = NavClass.new(mydude)
 
 class NavClass
-  attr_accessor :person_obj
+ ASCII_GREETING = '                                 
+                                  
+ (                             
+  )\      )     (               
+(((_)  ( /(  (  )\   (      (   
+)\___  )(_)) )\((_)  )\ )   )\  
+((/ __|((_)_ ((_)(_) _(_/(  ((_) 
+| (__ / _` |(_-<| || | \))/ _ \ 
+ \___|\__,_|/__/|_||_||_| \___/ 
+                                 
+'
   def initialize(obj)
     
     @person_obj = obj
@@ -16,6 +26,7 @@ class NavClass
   end
 
   def main_menu
+    puts ASCII_GREETING
     puts 'Welcome! Select a Game:
           1) Slots
           2) High/Low'
