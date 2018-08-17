@@ -1,11 +1,13 @@
 # require 'high_low_game'
-require_relative 'Slots'
+require_relative 'slots'
+
+#mydude = Person(name, 500)
+#start = NavClass.new(mydude)
 
 class NavClass
-  attr_reader :game_array
   
-  def initialize
-    
+  def initialize(obj)
+    @person_obj = obj
     @game_array = ['Slots', 'High_low_game']
     main_menu
     user_select_game
@@ -24,7 +26,7 @@ class NavClass
       play_game = eval "#{@game_array[0]}.new"
       puts 'one 1'
     when 2
-      play_game = @game_array[1].new
+      play_game = eval "#{@game_array[1]}.new"
       puts 'two 2'
     else
       puts "***\nInvalid Entry!\n***"
@@ -35,4 +37,4 @@ class NavClass
 
 end
 
-obj1 = NavClass.new
+obj1 = NavClass.new('23')
