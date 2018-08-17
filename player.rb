@@ -20,3 +20,5 @@ class Player
   end
 
 end
+
+p = Player.new
