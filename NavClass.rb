@@ -50,4 +50,4 @@ class NavClass
 
 end
 
-obj1 = NavClass.new('23')
+# obj1 = NavClass.new('23')
