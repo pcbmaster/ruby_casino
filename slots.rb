@@ -1,4 +1,3 @@
-require 'curses'
 require 'pry'
 
 class Slots
