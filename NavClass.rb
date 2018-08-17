@@ -5,7 +5,16 @@ require_relative 'slots'
 #start = NavClass.new(mydude)
 
 class NavClass
-  
+ ASCII_GREETING = '                                 
+ (                             
+ )\      )     (               
+(((_)  ( /(  (  )\   (      (   
+)\___  )(_)) )\((_)  )\ )   )\  
+((/ __|((_)_ ((_)(_) _(_/(  ((_) 
+| (__ / _` |(_-<| || \' \))/ _ \ 
+\___|\__,_|/__/|_||_||_| \___/ 
+                               
+'
   def initialize(obj)
     @person_obj = obj
     @game_array = ['Slots', 'High_low_game']
@@ -14,6 +23,7 @@ class NavClass
   end
 
   def main_menu
+    puts ASCII_GREETING
     puts 'Welcome! Select a Game:
           1) Slots
           2) High/Low'
