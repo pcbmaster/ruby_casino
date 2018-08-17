@@ -1,6 +1,7 @@
 require 'pry'
 
 class Player
+  
  attr_accessor :player_name, :bankroll
 
   def initialize (player_name, bankroll)
@@ -17,8 +18,9 @@ class Player
 
   def bankroll_amt
     puts "Your intial balance is: #{bankroll}"
+    start = NavClass.new
   end
-
+  
 end
 
 p = Player.new
