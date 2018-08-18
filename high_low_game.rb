@@ -22,7 +22,12 @@ class High_low_game
     # @wallet = @person_obj.bank_roll
     @my_deck = High_low_deck.new
     @old_card = @my_deck.grab_single_card
+
+    puts "########################################"
+    puts "#    WELCOME TO THE HIGH-LOW GAME!     #"
+    puts "########################################"
     puts ""
+    puts 'Here is your card: '
     puts @old_card
     puts ""
     user_bet
@@ -114,7 +119,6 @@ def compare_cards (new_card, old_card, user_guess)
 
   result = (new_C <=> old_C)
 
-  binding.pry
   # sets user_guess_input (that is a string) to a numeric value, representing whether they guessed "higher" or "lower"
 
   if (user_guess == 'h')
@@ -130,11 +134,14 @@ def compare_cards (new_card, old_card, user_guess)
   
   # compares numeric value, representing whether they guessed "higher" or "lower", with 
   if (u_g == result)
+    puts "Congratulations, you were right!"
     @end_result = 1
+  elsif result == 0
+    puts "They were the same! No penalty, starting over!"
   else
+    puts "Oof! Sorry, you got that one wrong."
     @end_result= 0
   end
-  binding.pry
 
 end
 
