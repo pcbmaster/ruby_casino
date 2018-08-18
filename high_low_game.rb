@@ -17,7 +17,6 @@ end
 
 class High_low_game
 
-<<<<<<< HEAD
   def initialize #(obj)
     # @person_obj = obj
     # @wallet = @person_obj.bank_roll
@@ -26,13 +25,6 @@ class High_low_game
     puts @old_card
     user_bet
   end
-=======
-  def initialize(obj)
-    puts 'test'
-
-  end
-# generate random card
->>>>>>> 5e38d1c310e76c39685b2f8570c1cf26d96203e4
 
 # user selects amount to bet
   def user_bet
