@@ -22,13 +22,17 @@ class High_low_game
     # @wallet = @person_obj.bank_roll
     @my_deck = High_low_deck.new
     @old_card = @my_deck.grab_single_card
+    puts ""
     puts @old_card
+    puts ""
     user_bet
   end
 
 # user selects amount to bet
   def user_bet
+    puts ""
     puts "How much would you like to bet?"
+    puts ""
     gets_user_bet
   end
 
@@ -36,7 +40,9 @@ class High_low_game
     @user_bet = gets.to_i
     ## !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     ## !!! In production, these next two lines of code will be moved to wallet_check method below !!!
+    puts ""
     puts "Would you like to bet that the next card is HIGHER, or LOWER? (H/L)"                   #!!!
+    puts ""
     gets_user_guess                                                                              #!!!
     ## !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
   end
@@ -67,13 +73,17 @@ def generate_new_card
   new_card = @my_deck.grab_single_card
   old_card = @old_card
   user_guess = @guess
+  puts ""
   puts new_card
-  compare_cards (new_card, old_card, user_guess)
+  puts ""
+  compare_cards(new_card, old_card, user_guess)
 end      
 
 # compare user guess with new random card
 def compare_cards (new_card, old_card, user_guess)
-
+  
+  # Sets numeric value to OLD card
+  
   if(old_card.rank == 'A')
     old_C = 1
   elsif(old_card.rank == 'J')
@@ -83,9 +93,11 @@ def compare_cards (new_card, old_card, user_guess)
   elsif(old_card.rank == 'K')
     old_C = 13
   else 
-    old_C = old_card.rank
+    old_C = old_card.rank.to_i
   end
-
+  
+  # Sets numeric value to NEW card
+  
   if(new_card.rank == 'A')
     new_C = 1
   elsif(new_card.rank == 'J')
@@ -95,38 +107,48 @@ def compare_cards (new_card, old_card, user_guess)
   elsif(new_card.rank == 'K')
     new_C = 13
   else 
-    new_C = new_card.rank
-  end
-  
-  if (old_C > new_C)
-    result = 1
-  elsif (old_C < new_C)
-    result = -1
-  else 
-    result = 0
+    new_C = new_card.rank.to_i
   end
 
-  if (user_guess = 'h')
+  # Compares numeric value of OLD Card with numeric value of NEW card
+
+  result = (new_C <=> old_C)
+
+  binding.pry
+  # sets user_guess_input (that is a string) to a numeric value, representing whether they guessed "higher" or "lower"
+
+  if (user_guess == 'h')
     u_g = 1
-  elsif user_guess = 'l'
+  elsif user_guess == 'l'
     u_g = -1
   else
-    puts "error interpreting user_guess to 1/-1 value"
+    puts ""
+    puts "error seting user_guess_input (that is a string) to a numeric value, representing whether they guessed 'higher' or 'lower'"
+    puts ""
   end
 
+  
+  # compares numeric value, representing whether they guessed "higher" or "lower", with 
   if (u_g == result)
     @end_result = 1
   else
     @end_result= 0
   end
+  binding.pry
+
 end
-# IF user_guess_correct {
-# double user_bet_amount and add to bankroll
-# } elsif user_guess incorrect {
-# subtract user_bet_amount from bankroll 
-# } else {
-# some error message
-# }
+
+  def update_bankroll
+
+    if @end_result == 1
+      #@wallet = @wallet + @user_bet
+    elsif @end_result == 0
+      #@wallet = @wallet - @user_bet
+    else
+    # Puts 'some error message'
+    end
+
+  end
 
 # Loop back to "user guesses higher or lower"
 end
