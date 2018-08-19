@@ -29,7 +29,8 @@ class NavClass
     puts ASCII_GREETING
     puts 'Welcome! Select a Game:
           1) Slots
-          2) High/Low'
+          2) High/Low
+          3) Exit Game'
   end
 
   def user_select_game
@@ -41,6 +42,8 @@ class NavClass
     when 2
       play_game = eval "#{@game_array[1]}.new(@person_obj)"
       puts 'two 2'
+    when 3
+      exit
     else
       puts "***\nInvalid Entry!\n***"
       main_menu
