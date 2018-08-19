@@ -1,4 +1,5 @@
 require_relative 'deck'
+require_relative 'player.rb'
 require 'pry'
 
 
@@ -17,9 +18,9 @@ end
 
 class High_low_game
 
-  def initialize #(obj)
-    # @person_obj = obj
-    # @wallet = @person_obj.bank_roll
+  def initialize (obj)
+    @person_obj = obj
+    @wallet = @person_obj.bank_roll
     @my_deck = High_low_deck.new
     @old_card = @my_deck.grab_single_card
     puts ""
@@ -188,7 +189,7 @@ end
 
 end
 
-hlg = High_low_game.new
+# hlg = High_low_game.new
 
 ##############################################  Experimental Code  ######################################################
 #. .
