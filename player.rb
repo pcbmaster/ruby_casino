@@ -20,5 +20,9 @@ class Player
     puts "Your intial balance is: #{bankroll}"
     start = NavClass.new
   end
+
+  def bank_roll
+    @bankroll[0].to_i
+  end
   
 end
