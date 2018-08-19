@@ -22,15 +22,32 @@ class High_low_game
     # @wallet = @person_obj.bank_roll
     @my_deck = High_low_deck.new
     @old_card = @my_deck.grab_single_card
-
+    puts ""
     puts "########################################"
     puts "#    WELCOME TO THE HIGH-LOW GAME!     #"
     puts "########################################"
     puts ""
-    puts 'Here is your card: '
-    puts @old_card
+    puts "Would you like to play a round? (Y/N)"
     puts ""
-    user_bet
+    start_game
+  end
+
+  def start_game
+
+    user_input_start = gets.strip.downcase
+    if user_input_start == 'y'
+      puts ""
+      puts 'Here is your card: '
+      puts @old_card
+      puts ""
+      user_bet
+    elsif user_input_start == 'n'
+      # send user back to main menu
+    exit
+    else
+      # puts "Some error message"
+    end
+
   end
 
 # user selects amount to bet
@@ -52,18 +69,15 @@ class High_low_game
     ## !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
   end
 
-  # check user_bet against wallet_amount. 
-  # IF bet < wallet... continue,
-  # ELSE error message, loop back to "selects
-  # amount to bet"
-
   # def wallet_check
-  #   if @wallet < @user_bet {
+  #   if @bankroll < @user_bet {
   #     puts "Sorry, looks like you don't have enough! Please only bet what you have..."
   #     user_bet
   #   } else {
-  #     puts "Would you like to bet that the next card is HIGHER, or LOWER? (H/L)"
-  #     gets_user_guess
+  #      puts ""
+  #      puts "Would you like to bet that the next card is HIGHER, or LOWER? (H/L)"                   #!!!
+  #      puts ""
+  #      gets_user_guess 
   #   }
   # end
 
@@ -136,11 +150,14 @@ def compare_cards (new_card, old_card, user_guess)
   if (u_g == result)
     puts "Congratulations, you were right!"
     @end_result = 1
+    update_bankroll
   elsif result == 0
     puts "They were the same! No penalty, starting over!"
+    initialize
   else
     puts "Oof! Sorry, you got that one wrong."
     @end_result= 0
+    update_bankroll
   end
 
 end
@@ -148,18 +165,46 @@ end
   def update_bankroll
 
     if @end_result == 1
-      #@wallet = @wallet + @user_bet
+      #@bankroll = @bankroll + @user_bet
+      puts ""
+      puts "Your new balance is: "
+      #puts @bankroll
+      puts ""
+      initialize
+
     elsif @end_result == 0
-      #@wallet = @wallet - @user_bet
+      #@bankroll = @bankroll - @user_bet
+      puts ""
+      puts "Your new balance is: "
+      #puts @bankroll
+      puts ""
+      initialize
+
     else
     # Puts 'some error message'
     end
 
   end
 
-# Loop back to "user guesses higher or lower"
 end
 
 hlg = High_low_game.new
 
-##################################  Experimental Code  ###################################################################
+##############################################  Experimental Code  ######################################################
+#. .
+#..  ..
+#...   ...
+#....    ....
+#.....     .....
+#......      ......
+#.......       .......
+#........        ........
+#.........         .........
+#..........          ..........
+#...........           ...........
+#............            ............ 
+#.............              .............
+#..............               ..............
+#...............                ...............
+#................                  ................
+#.................                   .................
