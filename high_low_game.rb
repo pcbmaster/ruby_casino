@@ -61,26 +61,28 @@ class High_low_game
 
   def gets_user_bet
     @user_bet = gets.to_i
+    wallet_check
     ## !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     ## !!! In production, these next two lines of code will be moved to wallet_check method below !!!
-    puts ""
-    puts "Would you like to bet that the next card is HIGHER, or LOWER? (H/L)"                   #!!!
-    puts ""
-    gets_user_guess                                                                              #!!!
+    # puts ""
+    # puts "Would you like to bet that the next card is HIGHER, or LOWER? (H/L)"                 #!!!
+    # puts ""
+    # gets_user_guess                                                                            #!!!
     ## !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
   end
 
-  # def wallet_check
-  #   if @bankroll < @user_bet {
-  #     puts "Sorry, looks like you don't have enough! Please only bet what you have..."
-  #     user_bet
-  #   } else {
-  #      puts ""
-  #      puts "Would you like to bet that the next card is HIGHER, or LOWER? (H/L)"                   #!!!
-  #      puts ""
-  #      gets_user_guess 
-  #   }
-  # end
+  def wallet_check
+    if @wallet < @user_bet 
+      puts ""
+      puts "Sorry, looks like you don't have enough! Please only bet what you have..."
+      puts ""
+      user_bet
+     else 
+       puts ""
+       puts "Would you like to bet that the next card is HIGHER, or LOWER? (H/L)"                   #!!!
+       puts ""
+       gets_user_guess 
+      end
 
   # user_guess = h/l (higher or lower)
   def gets_user_guess
@@ -166,18 +168,18 @@ end
   def update_bankroll
 
     if @end_result == 1
-      #@bankroll = @bankroll + @user_bet
+      @wallet = @wallet + @user_bet
       puts ""
       puts "Your new balance is: "
-      #puts @bankroll
+      puts @wallet
       puts ""
       initialize
 
     elsif @end_result == 0
-      #@bankroll = @bankroll - @user_bet
+      @wallet = @wallet - @user_bet
       puts ""
       puts "Your new balance is: "
-      #puts @bankroll
+      puts @bankroll
       puts ""
       initialize
 
