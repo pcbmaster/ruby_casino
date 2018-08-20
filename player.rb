@@ -6,7 +6,7 @@ class Player
 
   def initialize (player_name, bankroll)
 		@player_name = []
-    @bankroll = ['500.00']
+    @bankroll = 500.00
   end
 
   def enter_player

@@ -5,34 +5,8 @@ class Slots
   HEIGHT = 640
   WIDTH = 480
 
-  CHERRY = "
-                   MMMMMMMMM,           
-                 MM777777777MMM         
-                MM7777777ZZZDM~         
-          =MMMM.M7ZZZZZZZZZMM           
-               MMMMZZZZZZMMM            
-               MM MMMMMMMM              
-               MM   MM                  
-               MM    MM                 
-               MM     MM                
-               M       ?M               
-              MM        MM              
-             MM          MM             
-            MM            M$            
-           MM             =M            
-   ~MMMMMMMMMM=         MMMMMMMMMMM     
- =MMIIIIIMOIIIMMO     MMIIIIMIIIIIMMM   
-=MIIIIMIMMIMIII7MM   MNIIIMIMMIM$IIIMM  
-MDII IIMMMMMIIII$M  MMII IIMMMMMIIII7M  
-MIII    IIIIIIII7M~ MMII    IIIIIIII7MM 
-MIIIIIIIIIIIIII77M  MMIIIIIIIIIIIII$7MI 
-MMIIIIIIIIIIII77MM  MMIIIIIIIIIIIII7MM  
- MMIIIIIIIIII77NM    MMIIIIIIIIII$7$M?  
-  MMIIIIIII777MM      MMNIIIIII777MM    
-    MMMM8OMMMM          MMMM8OMMMMM     
-        ++                  =?.         "
-
-  
+  REEL_STATES = ['7', '🍑', '🍒', '🌟']
+  MULTIPLIERS = [5, 3, 1, .5]
   def draw_slot_machine(height, width, reels=nil)
     if width % 4 != 0
       width += 4 - (width % 4)
@@ -57,8 +31,55 @@ MMIIIIIIIIIIII77MM  MMIIIIIIIIIIIII7MM
   end
   
   def initialize(player_ref)
+    @player = player_ref
+    start_slots
   end
 
+  def get_bet
+    puts "How much are wou willing to bet? (max: #{@player.bankroll})"
+    desired_bet = gets.strip.downcase
+    if desired_bet == "quit"
+      @quitting = true
+    else
+      @bet = desired_bet<@player.bankroll ? desired_bet : player.bankroll
+    end
+  end
+
+  def spin_reels
+    if !quitting
+      reels = []
+      4.times {reels << REEL_STATES[random(4)]}
+      reels.each { |reel| print "#{reel} " }
+      puts
+      if reels[0] == reels[1] && reels[1] == reels[2] && reels[2] == reels[3] && reels[3] == reels[0]
+        win = true
+      else
+        win = false
+      end
+      multiplier = 0
+      if win == true
+        case reels[0]
+        when '7'
+          multiplier = MULTIPLIERS[0]
+        when '🍑'
+          multipler = MULTIPLIERS[1]
+        when '🍒'
+          multiplier = MULTIPLIERS[2]
+        when '🌟'
+          multipler = MULTIPLIERS[3]
+        end
+        @player.bankroll += @bet * multiplier 
+      else
+        @player.bankroll -= @bet
+      end
+    end
+  end
+    
   def start_slots
+    puts 'Welcome to the slot machine!'
+    @quitting = false
+    until quitting do
+      get_bet
+      spin_reels
   end
 end
