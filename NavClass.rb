@@ -1,9 +1,4 @@
-<<<<<<< HEAD
-# require 'high_low_game'
-#require_relative 'slots'
-=======
 require_relative 'slots'
->>>>>>> 84f38956cbe3e7dea9d555166c2fe36e43022dc9
 require_relative 'high_low_game'
 
 #mydude = Person(name, 500)
