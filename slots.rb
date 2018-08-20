@@ -36,12 +36,12 @@ class Slots
   end
 
   def get_bet
-    puts "How much are wou willing to bet? (max: #{@player.bankroll})"
+    puts "How much are wou willing to bet? (max: #{@player.bankroll[0]})"
     desired_bet = gets.strip.downcase
     if desired_bet == "quit"
       @quitting = true
     else
-      @bet = desired_bet<@player.bankroll ? desired_bet : player.bankroll
+      @bet = desired_bet<@player.bankroll[0] ? desired_bet : @player.bankroll[0]
     end
   end
 
@@ -68,9 +68,9 @@ class Slots
         when '🌟'
           multipler = MULTIPLIERS[3]
         end
-        @player.bankroll += @bet * multiplier 
+        @player.bankroll[0] += @bet * multiplier 
       else
-        @player.bankroll -= @bet
+        @player.bankroll[0] -= @bet
       end
     end
   end
