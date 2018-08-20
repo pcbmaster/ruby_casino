@@ -1,5 +1,9 @@
+<<<<<<< HEAD
 # require 'high_low_game'
 #require_relative 'slots'
+=======
+require_relative 'slots'
+>>>>>>> 84f38956cbe3e7dea9d555166c2fe36e43022dc9
 require_relative 'high_low_game'
 
 #mydude = Person(name, 500)
@@ -40,17 +44,12 @@ class NavClass
       case choice
       when 1
         play_game = eval "#{@game_array[0]}.new(@person_obj)"
-        puts 'one 1'
         main_menu
       when 2
         play_game = eval "#{@game_array[1]}.new(@person_obj)"
-        puts 'two 2'
         main_menu
       when 3
         exit
-      when 4
-        puts 'test case'
-        main_menu
       else
         puts "***\nInvalid Entry!\n***"
         main_menu
@@ -58,7 +57,4 @@ class NavClass
       end
     end
   end
-
 end
-
- obj1 = NavClass.new('23')

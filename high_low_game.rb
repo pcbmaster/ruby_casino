@@ -23,33 +23,39 @@ class High_low_game
     @person_obj = obj
     @wallet = @person_obj[1].to_i
     @my_deck = High_low_deck.new
+    @user_input_start = ''
+    display_menu
+    start_game
+  end
+
+  def display_menu
     puts ""
     puts "########################################"
     puts "#    WELCOME TO THE HIGH-LOW GAME!     #"
     puts "########################################"
     puts ""
-    start_game
+    puts "Would you like to play a round? (Y/N)"
+    puts ""
+    @user_input_start = gets.strip.downcase
   end
 
   def start_game
-    @old_card = @my_deck.grab_single_card
-    puts "Would you like to play a round? (Y/N)"
-    puts ""
-    user_input_start = gets.strip.downcase
-    if user_input_start == 'y'
-      puts ""
-      puts 'Here is your card: '
-      puts @old_card
-      puts ""
-      user_bet
-    elsif user_input_start == 'n'
-      # send user back to main menu
-      main_menu
-    #exit
-    else
-      # puts "Some error message"
+    
+    while @user_input_start != 'n'
+      @old_card = @my_deck.grab_single_card
+      if @user_input_start == 'y'
+        puts ""
+        puts 'Here is your card: '
+        puts @old_card
+        puts ""
+        user_bet
+      elsif @user_input_start == 'n'
+        # send user back to NavClass menu
+        return nil
+      else
+        puts 'Error! Please Enter a Correct Value!'
+      end
     end
-
   end
 
 # user selects amount to bet
@@ -156,8 +162,10 @@ class High_low_game
       puts "Congratulations, you were right!"
       @end_result = 1
       update_bankroll
+
     elsif result == 0
       puts "They were the same! No penalty, starting over!"
+      display_menu
       start_game
     else
       puts "Oof! Sorry, you got that one wrong."
@@ -173,27 +181,26 @@ class High_low_game
       @wallet = @wallet + @user_bet
       puts ""
       puts "Your new balance is: "
-      puts @wallet
+      puts @wallet.to_s
       puts ""
+      display_menu
       start_game
 
     elsif @end_result == 0
       @wallet = @wallet - @user_bet
       puts ""
       puts "Your new balance is: "
-      puts @wallet
+      puts @wallet.to_s
       puts ""
+      display_menu
       start_game
 
     else
     # Puts 'some error message'
     end
-
   end
-
 end
 
-#hlg = High_low_game.new(@person_obj)
 
 ##############################################  Experimental Code  ######################################################
 #. .
