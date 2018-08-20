@@ -9,6 +9,11 @@ class Card
     @suit = suit
     @color = color
   end
+
+  def to_s
+    "#{@rank} #{@suit} #{@color}"  
+  end
+
 end
 
 class Deck
@@ -37,15 +42,15 @@ class Deck
   end
 
   def list
-    @shuffle.each do |card|
-      puts "#{card.rank} of #{card.suit} (#{card.color})"
-    end
-    # random_card = @shuffle.sample
+    # @shuffle.each do |card|
+    #   puts "#{card.rank} of #{card.suit} (#{card.color})"
+    # end
+    random_card = @shuffle.sample
     # puts
     # puts "Your random card is: #{random_card.rank} of #{random_card.suit} (#{random_card.color})"
     # puts
   end
 end
 
-d = Deck.new
+# d = Deck.new
 # puts d.cards
