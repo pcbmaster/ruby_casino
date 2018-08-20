@@ -21,7 +21,6 @@ class High_low_game
 
   def initialize(obj)
     @person_obj = obj
-    @wallet = @person_obj[1].to_i
     @my_deck = High_low_deck.new
     @user_input_start = ''
     display_menu
@@ -79,7 +78,7 @@ class High_low_game
   end
 
   def wallet_check
-    if @wallet < @user_bet 
+    if @person_obj.bankroll[0] < @user_bet 
       puts ""
       puts "Sorry, looks like you don't have enough! Please only bet what you have..."
       puts ""
@@ -178,19 +177,19 @@ class High_low_game
   def update_bankroll
 
     if @end_result == 1
-      @wallet = @wallet + @user_bet
+      @person_obj.bankroll[0] = @person_obj.bankroll[0] + @user_bet
       puts ""
       puts "Your new balance is: "
-      puts @wallet.to_s
+      puts @person_obj.bankroll[0]
       puts ""
       display_menu
       start_game
 
     elsif @end_result == 0
-      @wallet = @wallet - @user_bet
+      @person_obj.bankroll[0] = @person_obj.bankroll[0] - @user_bet
       puts ""
       puts "Your new balance is: "
-      puts @wallet.to_s
+      puts @person_obj.bankroll[0]
       puts ""
       display_menu
       start_game
