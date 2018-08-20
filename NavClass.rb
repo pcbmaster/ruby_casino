@@ -30,24 +30,32 @@ class NavClass
     puts 'Welcome! Select a Game:
           1) Slots
           2) High/Low
-          3) Exit Game'
+          3) Exit Game
+          4) test case for loop'
   end
 
   def user_select_game
-    choice = gets.to_i
-    case choice
-    when 1
-      play_game = eval "#{@game_array[0]}.new(@person_obj)"
-      puts 'one 1'
-    when 2
-      play_game = eval "#{@game_array[1]}.new(@person_obj)"
-      puts 'two 2'
-    when 3
-      exit
-    else
-      puts "***\nInvalid Entry!\n***"
-      main_menu
-      user_select_game
+    while true
+      choice = gets.to_i
+      case choice
+      when 1
+        play_game = eval "#{@game_array[0]}.new(@person_obj)"
+        puts 'one 1'
+        main_menu
+      when 2
+        play_game = eval "#{@game_array[1]}.new(@person_obj)"
+        puts 'two 2'
+        main_menu
+      when 3
+        exit
+      when 4
+        puts 'test case'
+        main_menu
+      else
+        puts "***\nInvalid Entry!\n***"
+        main_menu
+        user_select_game
+      end
     end
   end
 
