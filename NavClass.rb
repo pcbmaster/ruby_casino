@@ -1,6 +1,6 @@
 # require 'high_low_game'
-require_relative 'slots'
-#require_relative 'high_low_game'
+#require_relative 'slots'
+require_relative 'high_low_game'
 
 #mydude = Person(name, 500)
 #start = NavClass.new(mydude)
