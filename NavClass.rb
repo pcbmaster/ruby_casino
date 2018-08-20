@@ -1,5 +1,6 @@
 require_relative 'slots'
 require_relative 'high_low_game'
+require 'pry'
 
 #mydude = Person(name, 500)
 #start = NavClass.new(mydude)
@@ -17,7 +18,6 @@ class NavClass
                                  
 '
   def initialize(obj)
-    
     @person_obj = obj
     @game_array = ['Slots', 'High_low_game']
     main_menu
@@ -41,7 +41,8 @@ class NavClass
         play_game = eval "#{@game_array[0]}.new(@person_obj)"
         main_menu
       when 2
-        play_game = eval "#{@game_array[1]}.new(@person_obj)"
+        #play_game = eval "#{@game_array[1]}.new(@person_obj)"
+        play_game = eval High_low_game.new(@person_obj)
         main_menu
       when 3
         exit

@@ -1,5 +1,6 @@
 require_relative 'deck'
 require_relative 'player.rb'
+#require_relative 'NavClass'
 require 'pry'
 
 
@@ -18,9 +19,8 @@ end
 
 class High_low_game
 
-  def initialize (obj)
+  def initialize(obj)
     @person_obj = obj
-    @wallet = @person_obj.bank_roll
     @my_deck = High_low_deck.new
     @user_input_start = ''
     display_menu
@@ -68,24 +68,24 @@ class High_low_game
   def gets_user_bet
     @user_bet = gets.to_i
     wallet_check
-    ## !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    ## !!! In production, these next two lines of code will be moved to wallet_check method below !!!
-    # puts ""
-    # puts "Would you like to bet that the next card is HIGHER, or LOWER? (H/L)"                 #!!!
-    # puts ""
-    # gets_user_guess                                                                            #!!!
-    ## !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    # # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    # # !!! In production, these next two lines of code will be moved to wallet_check method below !!!
+    # puts ""                                                                                     #!!!
+    # puts "Would you like to bet that the next card is HIGHER, or LOWER? (H/L)"                  #!!!
+    # puts ""                                                                                     #!!!
+    # gets_user_guess                                                                             #!!!
+    # # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
   end
 
   def wallet_check
-    if @wallet < @user_bet 
+    if @person_obj.bankroll[0] < @user_bet 
       puts ""
       puts "Sorry, looks like you don't have enough! Please only bet what you have..."
       puts ""
       user_bet
-    else 
+    else
       puts ""
-      puts "Would you like to bet that the next card is HIGHER, or LOWER? (H/L)"                   #!!!
+      puts "Would you like to bet that the next card is HIGHER, or LOWER? (H/L)"
       puts ""
       gets_user_guess
     end
@@ -97,7 +97,7 @@ class High_low_game
     generate_new_card
   end
 
-  # generate new random card / display to user
+# generate new random card / display to user
   def generate_new_card
     new_card = @my_deck.grab_single_card
     old_card = @old_card
@@ -108,9 +108,9 @@ class High_low_game
     compare_cards(new_card, old_card, user_guess)
   end      
 
-# compare user guess with new random card
+  # compare user guess with new random card
   def compare_cards (new_card, old_card, user_guess)
-  
+    
     # Sets numeric value to OLD card
     
     if(old_card.rank == 'A')
@@ -170,7 +170,6 @@ class High_low_game
       puts "Oof! Sorry, you got that one wrong."
       @end_result= 0
       update_bankroll
-
     end
 
   end
@@ -178,19 +177,19 @@ class High_low_game
   def update_bankroll
 
     if @end_result == 1
-      @wallet = @wallet + @user_bet
+      @person_obj.bankroll[0] = @person_obj.bankroll[0] + @user_bet
       puts ""
       puts "Your new balance is: "
-      puts @wallet.to_s
+      puts @person_obj.bankroll[0]
       puts ""
       display_menu
       start_game
 
     elsif @end_result == 0
-      @wallet = @wallet - @user_bet
+      @person_obj.bankroll[0] = @person_obj.bankroll[0] - @user_bet
       puts ""
       puts "Your new balance is: "
-      puts @wallet.to_s
+      puts @person_obj.bankroll[0]
       puts ""
       display_menu
       start_game
@@ -200,7 +199,6 @@ class High_low_game
     end
   end
 end
-
 
 
 ##############################################  Experimental Code  ######################################################
